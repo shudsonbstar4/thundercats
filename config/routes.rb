@@ -1,4 +1,20 @@
 Thundercats::Application.routes.draw do
+  get "store/index"
+
+	post "store/add_cart", :as => :add_cart
+  resources :storefronts
+
+
+  devise_for :users
+
+  resources :customers
+
+
+  resources :products
+	resources :storefronts
+	post "products/assign_category", :as => :assign_category
+	#root 'products#index'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -49,6 +65,8 @@ Thundercats::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
+	
+	root :to => 'store#index'
 
   # See how all your routes lay out with "rake routes"
 

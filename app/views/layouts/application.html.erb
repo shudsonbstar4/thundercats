@@ -2,13 +2,59 @@
 <html>
 <head>
   <title>Thundercats</title>
+	<%= stylesheet_link_tag "bootstrap", :media => "all" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+	<link href='http://fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<div class="container">
+<div class="navbar">
+<div class="col-md-6">
+	<h1><%= link_to "ThunderCats", root_path %></h1>
+</div>
+<div class="col-md-6 text-right">
+	<% if user_signed_in? %>
+		Hi, <%= current_user.email %> |
+		<%= link_to "Manage Products", products_path %> |
+		<%= link_to "Log Out", destroy_user_session_path, method: "delete" %>
+	<% end %>
+	Cart: 
+	<input type="text" placeholder="Search" id="search" />
+</div>
+<div class="col-md-12">
+	<div class="col-md-6">
+		<ul class="nav navbar-nav navbar-right">
+		<% @categories.each do |cat| %>
+			<li><%= link_to cat.name, root_path(:id => cat.id) %></li>
+	<% end %>
+		</ul>
+	</div>
+</div>
+</div> <!--END NAVBAR-->
+
+<div>
+	<%= notice %><br />
+	<%= alert %>
+</div>
+
+<div class="wrapper">
 
 <%= yield %>
 
+</div><!--WRAPPER-->
+</div>
+
+<footer class="panel-footer">
+	<div class="container">
+		<p>&copy; 2013 ThunderCats</p>
+	<div>
+</footer>
+
+
+<%= javascript_include_tag "bootstrap.js" %>
+<%= javascript_include_tag "jquery.js" %>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
 </body>
 </html>

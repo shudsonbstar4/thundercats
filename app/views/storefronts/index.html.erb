@@ -1,0 +1,68 @@
+<table>
+<% @storefronts.each do |storefront| %>
+  <tr>
+    <td><%= storefront.title %></td>
+    <td><%= storefront.product_id %></td>
+    <td><%= storefront.category_id %></td>
+    <td><%= link_to 'Show', storefront %></td>
+    <td><%= link_to 'Edit', edit_storefront_path(storefront) %></td>
+    <td><%= link_to 'Destroy', storefront, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+
+
+
+<div class="col-md-12">
+<div id="myCarousel" class="carousel slide">
+	<div class="carousel-inner">
+		<div class="active item"><%= image_tag 'test.png', :alt => 'Test' %></div>
+		<div class="item"><%= image_tag 'test.png', :alt => 'Test' %></div>
+		<div class="item"><%= image_tag 'test.png', :alt => 'Test' %></div>
+	</div>
+</div>
+<a class="carousel-control left" href="#myCarousel" data-slide="prev"><</a>
+<a class="carousel-control right" href="#myCarousel" data-slide="next">></a>
+</div> <!--BANNER-->
+
+<h2>Products</h2>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vestibulum libero vitae sagittis rhoncus. Nullam et tristique orci. Suspendisse sit amet neque sit amet dui suscipit fermentum quis eget nunc. Donec ut ornare mauris. Sed elementum metus et viverra feugiat. Integer lacus mi, tristique ac ultrices vitae, consectetur non odio. Suspendisse tincidunt nisl et semper ullamcorper. Nunc non neque eget erat ornare posuere vel sit amet neque. Donec velit sapien, pulvinar vitae interdum quis, bibendum a diam. Curabitur tincidunt dictum dui at congue.</p>
+<br />
+
+
+<div class="col-md-12">
+		<ul class="nav navbar-nav navbar-right">
+		<% @categories.each do |cat| %>
+			<li><%= link_to cat.name, storefronts_path(:id => cat.id) %></li> <!--Sets name to the category name-->
+	<% end %>
+		</ul>
+	</div>
+	
+<br />
+<br />
+
+<div class="col-md-12">
+
+<% @products.each do |product| %>
+		
+		<div class="col-md-3">
+			<span class="product_name"><a href=""><%= link_to product.name, product %></a></span><br />
+			<span class="product_price">$<%= product.unit_price %></span><br />
+			<div class="square"></div>
+	  </div>
+<% end %>
+</div>
+
+
+
+
+
+<br />
+
+
+
+<br />
+
+<!--<%= link_to 'New Storefront', new_storefront_path %>-->

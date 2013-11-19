@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @storefront.title %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%= @storefront.product_id %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @storefront.category_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_storefront_path(@storefront) %> |
+<%= link_to 'Back', storefronts_path %>
