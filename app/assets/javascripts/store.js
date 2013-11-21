@@ -10,6 +10,8 @@ $(document).ready(function(){
 		var value_int = parseInt(value); //Convert value into an integer
 		
 		var product_id = $(this).siblings('.product-id').val();
+		var product_name = $(this).data('product-name');
+		var price = $(this).data('price');
 		
 		if(value_int > 0){
 			//alert('Thank you!');
@@ -17,7 +19,9 @@ $(document).ready(function(){
 			//Make an AJAX call
 			$.post('/store/add_cart', {
 				quantity : value_int,
-				product_id : product_id
+				product_id : product_id,
+				product_name : product_name,
+				price : price
 			}); //Make a post request; first param is a URI, second param is a hash with quantity and value
 		}
 		else{
@@ -25,4 +29,26 @@ $(document).ready(function(){
 		}
 		
 	});
+	
+	$('#toggle_cart_button').click(function(){
+		//$('#cart_detail_panel').toggle('slow'); //OR
+		
+		//var display = $('#cart_detail_panel').css('display');
+		//if (display == 'none'){
+			//$('#cart_detail_panel').css('display', 'block');
+			//} else {
+				//$('#cart_detail_panel').css('display', 'none');
+			//}
+			
+			//CAN ALSO DO
+			
+		var display = $('#cart_detail_panel').css('display');
+		if (display == 'none'){
+			$('#cart_detail_panel').slideDown();
+			} else {
+				$('#cart_detail_panel').slideUp();
+			}
+			
+	});
+	
 });

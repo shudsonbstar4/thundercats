@@ -7160,3 +7160,25 @@ td.visible-print {
 	margin: 1.5em 0;
 	border: 1px dotted #565656;
 }
+
+#cart{
+	position:fixed;
+	background-color: #fff;
+	padding: 2em;
+	border: 1px solid #d2d2d2;
+	box-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+	z-index: 9999;
+	right: 12%;
+}
+
+.cart-panel{
+	position: relative;
+}
+
+#cart-total {
+	font-weight:bold;
+}
+
+#cart_detail_panel {
+	/*display: none;*/
+}

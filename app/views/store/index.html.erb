@@ -1,3 +1,13 @@
+<div class="col-md-12 text-right">
+<div class="cart-panel">
+<div id="cart">
+	<h4>Cart:</h4>
+	<div id="cart_msg">
+		<%= render 'cart' %>
+	</div>
+</div> <!--CART-->
+</div><!--END CART PANEL-->
+</div>
 <div class="col-md-12">
 <div id="myCarousel" class="carousel slide">
 	<div class="carousel-inner">
@@ -31,7 +41,7 @@
 			<div class="square"></div>
 			<input type="hidden" class="product-id" value="<%= product.id %>" />
 			Quantity: <input type="text" class="quantity" value="1" /><br /><br /> <!-- Change to loop through #s -->
-			<button class="btn btn-success add-to-cart">Add to Cart</button>
+			<button class="btn btn-success add-to-cart" data-product-name="<%= product.name %>" data-price="<%= product.unit_price %>">Add to Cart</button>
 	  </div>
 <% end %>
 </div>

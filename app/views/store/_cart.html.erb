@@ -1,0 +1,19 @@
+<% if @cart.count <= 0 %>
+		You have nothing in your cart. Shame on you.
+	<% else %>
+		You have <%= pluralize(@cart.count, "item") %> in your cart.<br />
+		<div id="cart_detail_panel">
+			<% @cart.each do |key, value| %>
+				<div><%= value[0] %> - <%= value[1] %> <%= number_to_currency value[2] %></div>
+			<% end %>
+		
+			<div id="cart-total">
+				<% if @cart != nil? %>
+				<% end %>
+					<h5>Subtotal: <%= number_to_currency @sum %></h5>
+				</div><!--CART TOTAL-->
+			</div> <!-- CART DETAIL PANEL-->
+	</div>
+	<br />
+<div class="button"><button id="toggle_cart_button" class="btn btn-success">View more</button></div>
+<% end %>

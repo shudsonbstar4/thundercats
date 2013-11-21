@@ -1,1 +1,3 @@
-alert('Thank you for buying our product!');
+alert('Thank you for buying <%= @product_name %>');
+
+$('#cart_msg').html('<%= escape_javascript(render "cart") %>');
