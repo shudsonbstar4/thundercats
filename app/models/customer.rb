@@ -1,6 +1,6 @@
 class Customer < ActiveRecord::Base
   attr_accessible :address1, :address2, :city, :email, :name, :phone, :state, :zip
-	has_many :orders
+	has_one :order
 	
 	validates_presence_of :name, :email, :address1, :city, :state, :zip
 	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create

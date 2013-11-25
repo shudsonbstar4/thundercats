@@ -7180,5 +7180,24 @@ td.visible-print {
 }
 
 #cart_detail_panel {
-	/*display: none;*/
+	display: none;
+	margin-top: 0.5em;
+}
+
+.delete {
+	color: #fff;
+	font-weight:bold;
+	background-color: orange;
+	padding: 1px 4px;
+	margin: 4px 0px 4px 4px;
+	cursor: pointer;
+}
+
+.delete:hover {
+	background-color: green;
+}
+
+.line-item {
+	/*margin-bottom: 0.3em;*/
+	display:none;
 }

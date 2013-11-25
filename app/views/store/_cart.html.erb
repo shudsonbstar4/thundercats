@@ -2,15 +2,19 @@
 		You have nothing in your cart. Shame on you.
 	<% else %>
 		You have <%= pluralize(@cart.count, "item") %> in your cart.<br />
+		<hr />
 		<div id="cart_detail_panel">
 			<% @cart.each do |key, value| %>
-				<div><%= value[0] %> - <%= value[1] %> <%= number_to_currency value[2] %></div>
+				<div class="item"><span class="quantity"><%= value[0] %></span> - <span class="product-name"><%= value[1] %></span> <span class="cart-price"><%= number_to_currency value[2] %></span>&nbsp;<span class="delete" data-product-id="<%= key %>">X</span></div>
 			<% end %>
 		
 			<div id="cart-total">
 				<% if @cart != nil? %>
 				<% end %>
 					<h5>Subtotal: <%= number_to_currency @sum %></h5>
+					<% if @sum > 0 %>
+					<button class="btn btn-success"><%=link_to "Place Order", new_customer_path %></button>
+					<% end %>
 				</div><!--CART TOTAL-->
 			</div> <!-- CART DETAIL PANEL-->
 	</div>

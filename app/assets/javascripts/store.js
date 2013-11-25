@@ -29,8 +29,8 @@ $(document).ready(function(){
 		}
 		
 	});
-	
-	$('#toggle_cart_button').click(function(){
+	$(document).on('click', '#toggle_cart_button', function(){
+	//$('#toggle_cart_button').click(function(){
 		//$('#cart_detail_panel').toggle('slow'); //OR
 		
 		//var display = $('#cart_detail_panel').css('display');
@@ -50,5 +50,26 @@ $(document).ready(function(){
 			}
 			
 	});
+	
+	$(document).on('click', '.delete', function(){ //When delete is clicked
+		//alert("I am working!");
+		var value = $(this).siblings('.quantity').html(); //$("span.quantity").html();
+		var value_int = parseInt(value); //Convert value into an integer
+		var product_id = $(this).data('product-id');
+		var product_name = $(this).siblings('.product-name').html(); //$("span.product-name").html();
+		var price = $(this).siblings('.cart-price').html(); //$("span.cart-price").html();
+		//This isn't going to work because the classes are done for each line item, which means that jQuery doesn't know which one to grab
+		
+		$.post('/store/delete_cart', {
+				quantity : value_int,
+				product_id : product_id,
+				product_name : product_name,
+				price : price
+			}); //Make a post request; first param is a URI, second param is a hash with quantity and value*/
+			alert('The quantity is ' + value_int + ' and the product name is ' + product_name + ' and the price is ' + price + ' and the product id is ' + product_id);
+			
+			$(this).parent('.item').addClass('line-item');
+			
+	}); //END DELETE FN
 	
 });

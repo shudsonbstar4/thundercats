@@ -44,6 +44,31 @@ class CustomersController < ApplicationController
 
     respond_to do |format|
       if @customer.save
+				#Create order/line items from cart; cart is a hash, with the key as the product_id and value is nested array
+				current_cart = session[:cart] 
+				order = Order.new
+				order.customer_id = @customer.id
+				sub_total = Cart.calculate_cart_total(current_cart) #Will give sub_total of all the items in the current cart
+				
+				order.sub_total = sub_total #We are building order object line by line
+				order.sales_tax = sub_total * Order::CURRENT_SALES_TAX
+				order.grand_total = order.sub_total + order.sales_tax
+				
+				order.save
+				
+				#Save each line item into DB in the LineItem table
+				current_cart.each do |key, item| #Accessing the key and the value
+					line_item = LineItem.new #Instanciating new line item object
+					line_item.product_id = key
+					line_item.quantity = item[0]
+					#line_item.product_name = item[1] #NOT GOING TO WORK B/C NO PRODUCT_NAME IN LINEITEM TABLE
+					line_item.unit_price = item[2]
+					line_item.line_item_total = line_item.quantity * line_item.unit_price
+					line_item.order_id = order.id
+					
+					line_item.save
+				end
+				
         format.html { redirect_to @customer, notice: 'Customer was successfully created.' }
         format.json { render json: @customer, status: :created, location: @customer }
       else
