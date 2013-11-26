@@ -1,4 +1,8 @@
 Thundercats::Application.routes.draw do
+  get "orders/index"
+
+  get "orders/show"
+
   get "store/index"
 
 	post "store/add_cart", :as => :add_cart

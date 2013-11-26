@@ -1,0 +1,43 @@
+<h1>Order History</h1>
+<table class="table table-striped order-history">
+	<thead>
+	<tr>
+		<th>Order Id</th>
+		<th>Customer Information</th>
+		<th>Subtotal</th>
+		<th>Sales Tax</th>
+		<th>Grand Total</th>
+		<th>&nbsp;</th>
+	</tr>
+	</thead>
+	<tbody>
+	
+<% @orders.each do |order| %>
+	<tr>
+		<td><%= order.id %></td>
+		<td>
+		<%= order.customer.name %></td>
+		<td><%= number_to_currency order.sub_total %></td>
+		<td><%= number_to_currency order.sales_tax %></td>
+		<td><%= number_to_currency order.grand_total%></td>
+		<td><button data-id="<%= order.id %>" class="btn btn-success order-detail">View more</button></td>
+	</tr>
+	<tr class="contact-information" id="contact_info_<%= order.id %>">
+		<td colspan="2">
+		<h4>Contact Information:</h4>
+		<%= order.customer.email %><br />
+		<%= order.customer.phone %><br /><hr />
+		<strong>Address:</strong><br />
+		<%= raw pretty_address(order.customer) %>
+		</td>
+		<td colspan="3">
+		<h4>Line Items</h4>
+			<% order.line_items.each do |line_item| %>
+				<%= line_item.quantity %> | <%= line_item.product.name %> | <%= number_to_currency line_item.unit_price %><br />
+			<% end %>
+		</td>
+	</tr>
+<% end %>
+</tbody>
+
+</table>
