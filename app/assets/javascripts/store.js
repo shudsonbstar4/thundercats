@@ -68,7 +68,7 @@ $(document).ready(function(){
 			}); //Make a post request; first param is a URI, second param is a hash with quantity and value*/
 			alert('The quantity is ' + value_int + ' and the product name is ' + product_name + ' and the price is ' + price + ' and the product id is ' + product_id);
 			
-			$(this).parent('.item').addClass('line-item');
+			//$(this).parent('.item').addClass('line-item');
 			
 	}); //END DELETE FN
 	

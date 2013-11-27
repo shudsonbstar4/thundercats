@@ -5,7 +5,7 @@
 		<hr />
 		<div id="cart_detail_panel">
 			<% @cart.each do |key, value| %>
-				<div class="item"><span class="quantity"><%= value[0] %></span> - <span class="product-name"><%= value[1] %></span> <span class="cart-price"><%= number_to_currency value[2] %></span>&nbsp;<span class="delete" data-product-id="<%= key %>">X</span></div>
+				<div class="item"><span class="quantity"><%= value[0] %></span> - <span class="product-name"><%= value[1] %></span> <span class="cart-price"><%= number_to_currency value[2] %></span>&nbsp;<span><%= link_to "X", store_remove_cart_item_path(:product_id=>key), :method=>:delete %></span></div>
 			<% end %>
 		
 			<div id="cart-total">

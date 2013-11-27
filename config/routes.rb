@@ -6,7 +6,7 @@ Thundercats::Application.routes.draw do
   get "store/index"
 
 	post "store/add_cart", :as => :add_cart
-	post "store/delete_cart", :as => :delete_cart
+	delete "store/remove_cart_item"
 	
 	get "products-by-category/:category_name" => "store#index", as: :products_by_category
 	

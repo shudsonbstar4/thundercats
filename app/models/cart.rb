@@ -15,7 +15,13 @@ class Cart
 	
 	
 	def self.delete_cart_total(cart)
-		@sum = @sum - @price
+		product_id = params[:product_id]
+		cart.each do |key, value_array|
+			if key = product_id
+				@sum = @sum - value_array[2]
+				cart.delete(product_id)
+			end
+		end
 		
 	end
 	

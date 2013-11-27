@@ -104,23 +104,12 @@ class StoreController < ApplicationController
 	end
 
 	
-	def delete_cart
-		
-		Rails.logger.info "CART= #{session[:cart]} vs #{@current_cart}"
-
-			#old_quantity = @value_array[0] #It's not passing in the values for this array
-			#new_quantity = old_quantity - @quantity #Taking the old_quantity value and adding it to quantity variable, which was passed in through the params
-			#@current_cart[@product_id] = [new_quantity, @product_name, @price] #old_quantity + quantity #Adding the old quantity with the new one and saving it to current_cart
-			#This is taking the hash key product_id and setting the value to an array with the new_quantity variable, the product_name, and the price (not updating the price)
-
-		#end
-		
-
-		@cart = @current_cart
-		
-		@sum = Cart.delete_cart_total(@cart)
-		
-		Rails.logger.info "CART = #{session[:cart]}" #Puts out input to server log so you can debug and see what's being sent to server
+	def remove_cart_item
+		product_id = params[:product_id].to_i #receive a product id from the browser; the symbol is a key b/c cart is a hash
+		@cart = session[:cart]
+		@cart.delete(product_id) #Accessing the item of the hash through the key (product id) and then deleting it
+		redirect_to store_index_path
+		#@sum = Cart.calculate_cart_total(@cart) #DOn't need to recalculate sum
 	
 	end
 	
