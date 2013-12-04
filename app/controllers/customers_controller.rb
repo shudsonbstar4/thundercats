@@ -67,9 +67,18 @@ class CustomersController < ApplicationController
 					line_item.order_id = order.id
 					
 					line_item.save
+					
+					product = Product.find(line_item.product_id)
+					product.quantity = product.quantity - line_item.quantity
+					product.save
+
 				end
+				
+				#Send email out to customer and admin about the order
+				Notifier.order_confirmation_email(@customer).deliver
+				
 				#Clear the cart after they've ordered
-				session.clear
+				session.delete(:cart)
 				#Or can do
 				#session[:cart] = {}
 				

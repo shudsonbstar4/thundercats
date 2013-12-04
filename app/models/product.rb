@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+	paginates_per 3
   attr_accessible :brand, :description, :model_num, :name, :quantity, :sku, :unit_price
 	has_many :line_items
 	has_many :product_categories, :dependent => :destroy

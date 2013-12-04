@@ -4,8 +4,9 @@ class StoreController < ApplicationController
 		category_name = params[:category_name]
 		if category_name.blank? #If tag is blank, get all the products.
 			@products = Product.all
+			@products = Product.where('quantity > 0').order(:name).page(params[:page])
 		else
-			@products = Category.find_by_name(category_name).products
+			@products = Category.find_by_name(category_name).products.where('quantity > 0').order(:name).page(params[:page])
 			#@products = Category.find(category.id).products #Don't need the id at all
 		end
 	
